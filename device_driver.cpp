@@ -6,7 +6,6 @@ DeviceDriver::DeviceDriver(FlashMemoryDevice* hardware) : m_hardware(hardware)
 
 int DeviceDriver::read(long address)
 {
-  // TODO: implement this method properly
   int ret = 0;
 
   ret = (int)(m_hardware->read(address));
@@ -31,6 +30,11 @@ void DeviceDriver::postConditionCheck(int ret, long address)
 
 void DeviceDriver::write(long address, int data)
 {
-  // TODO: implement this method
+  int readData = (int)(m_hardware->read(address));
+  if (readData != 0xFF)
+  {
+    throw WriteFailException();
+  }
+
   m_hardware->write(address, (unsigned char)data);
 }

@@ -17,7 +17,6 @@ TEST(DeviceDriver, ReadFromHW)
 	EXPECT_CALL(mock, read((long)0xB))
 		.Times(5);
 
-
 	DeviceDriver driver{ &mock };
 
 	int data = driver.read((long)0xB);
@@ -44,6 +43,19 @@ TEST(DeviceDriver, ReadFromHW_ReadFailException)
 	{
 		EXPECT_EQ(std::string{ e.what() }, std::string { "Read Fail Exception!"});
 	}
+}
+
+TEST(DeviceDriver, WriteFromHW)
+{
+	FlashMock mock;
+	driver.write((long)0xB, 2);
+
+	mock Write((long)0xB);
+	EXPECT_CALL()
+
+	DeviceDriver driver{&mock};
+
+	int data = driver.read((long)0xB);
 }
 
 int main()

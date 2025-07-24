@@ -12,6 +12,15 @@ public:
   }
 };
 
+class WriteFailException : public std::exception
+{
+public:
+  char const* what() const override
+  {
+    return "Write Fail Exception!";
+  }
+};
+
 class DeviceDriver
 {
 public:
